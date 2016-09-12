@@ -19,7 +19,8 @@ export class Users {
   private log: Logger;
   private http: HttpClient;
 
-  constructor( @lazy(HttpClient) private getHttpClient: () => HttpClient) {
+  constructor( @lazy(HttpClient) private getHttpClient: () => HttpClient,
+               @lazy(UsersService) private getUsersService: () => UsersService) {
     this.log = LogManager.getLogger('Users VM');
   }
 
