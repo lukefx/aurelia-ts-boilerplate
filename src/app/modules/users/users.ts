@@ -1,5 +1,7 @@
-import {lazy} from 'aurelia-framework';
-import {HttpClient} from 'aurelia-fetch-client';
+import { lazy, LogManager } from 'aurelia-framework';
+import { Logger } from 'aurelia-logging';
+import { HttpClient } from 'aurelia-fetch-client';
+import { UsersService } from '../../services/users.ts';
 
 // polyfill fetch client conditionally
 const fetch = !self.fetch ? System.import('isomorphic-fetch') : Promise.resolve(self.fetch);
@@ -14,9 +16,12 @@ export class Users {
   public heading: string = 'Github Users';
   public users: Array<IUser> = [];
 
+  private log: Logger;
   private http: HttpClient;
 
-  constructor(@lazy(HttpClient) private getHttpClient: () => HttpClient) {}
+  constructor( @lazy(HttpClient) private getHttpClient: () => HttpClient) {
+    this.log = LogManager.getLogger('Users VM');
+  }
 
   public async activate(): Promise<void> {
     // ensure fetch is polyfilled before we create the http client
