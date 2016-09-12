@@ -26,8 +26,12 @@ export class Users {
   }
 
   public async activate(): Promise<void> {
-    let url = this.usersService.getBaseUrl();
-    this.log.debug('base-url', url);
+    // let url = this.usersService.getBaseUrl();
+    // this.log.debug('base-url', url);
+
+    const response = await this.usersService.getAll();
+    this.log.info('response', response);
+    // this.users = await response.json();
 
     // // ensure fetch is polyfilled before we create the http client
     // await fetch;
