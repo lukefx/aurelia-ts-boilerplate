@@ -1,10 +1,10 @@
-import { lazy, LogManager } from 'aurelia-framework';
+import { LogManager, inject } from 'aurelia-framework'; //lazy
 import { Logger } from 'aurelia-logging';
-import { HttpClient } from 'aurelia-fetch-client';
+// import { HttpClient } from 'aurelia-fetch-client';
 import { UsersService } from '../../services/users.ts';
 
 // polyfill fetch client conditionally
-const fetch = !self.fetch ? System.import('isomorphic-fetch') : Promise.resolve(self.fetch);
+// const fetch = !self.fetch ? System.import('isomorphic-fetch') : Promise.resolve(self.fetch);
 
 interface IUser {
   avatar_url: string;
@@ -12,30 +12,34 @@ interface IUser {
   html_url: string;
 }
 
+@inject(UsersService)
 export class Users {
   public heading: string = 'Github Users';
   public users: Array<IUser> = [];
 
   private log: Logger;
-  private http: HttpClient;
+  // private http: HttpClient;
 
-  constructor( @lazy(HttpClient) private getHttpClient: () => HttpClient,
-               @lazy(UsersService) private getUsersService: () => UsersService) {
+  //@lazy(Bubu) private getUsersService: () => Bubu
+  constructor(private usersService: UsersService) {
     this.log = LogManager.getLogger('Users VM');
   }
 
   public async activate(): Promise<void> {
-    // ensure fetch is polyfilled before we create the http client
-    await fetch;
-    const http = this.http = this.getHttpClient();
+    let url = this.usersService.getBaseUrl();
+    this.log.debug('base-url', url);
 
-    http.configure(config => {
-      config
-        .useStandardConfiguration()
-        .withBaseUrl('https://api.github.com/');
-    });
+    // // ensure fetch is polyfilled before we create the http client
+    // await fetch;
+    // const http = this.http = this.getHttpClient();
 
-    const response = await http.fetch('orgs/w3tecch/public_members');
-    this.users = await response.json();
+    // http.configure(config => {
+    //   config
+    //     .useStandardConfiguration()
+    //     .withBaseUrl('https://api.github.com/');
+    // });
+
+    // const response = await http.fetch('orgs/w3tecch/public_members');
+    // this.users = await response.json();
   }
 }
