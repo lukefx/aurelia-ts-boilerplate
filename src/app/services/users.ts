@@ -1,18 +1,15 @@
-// import { Logger } from 'aurelia-logging';
-// import { LogManager } from 'aurelia-framework';
-import { RESTClient, BaseUrl } from 'restaurelia';
+// import { Logger } from 'aurelia-logging'; //LogManager
+import { inject } from 'aurelia-framework';
+import { RESTClient, baseUrl } from 'restaurelia';
 
-@BaseUrl('https://api.github.com')
+@baseUrl('https://api.github.com')
 export class UsersService extends RESTClient {
 	// private log: Logger;
 
-	constructor() {
-		super();
+	constructor(a) {
+		super(a);
 		// this.log = LogManager.getLogger('REST -> Users');
 		// this.log.debug('BaseUrl', this.getBaseUrl());
 	}
 
-	public say(): void {
-		alert('say hi');
-	}
 }
