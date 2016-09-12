@@ -62,6 +62,11 @@ export async function configure(aurelia: Aurelia): Promise<void> {
     .instance('AppConfig', AppConfig)
 
     /**
+     *
+     */
+    // .plugin('aurelia-mobile-plugin')
+
+    /**
      * This enables the animation plugin for aurelia
      * See: https://github.com/aurelia/animator-css
      * See: http://blog.durandal.io/2015/07/17/animating-apps-with-aurelia-part-1/

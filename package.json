@@ -70,6 +70,7 @@
     }
   },
   "dependencies": {
+    "restaurelia": "^0.0.0",
     "animate.css": "^3.5.2",
     "aurelia-animator-css": "^1.0.1",
     "aurelia-bootstrapper-webpack": "^1.0.0",
