@@ -65,6 +65,7 @@ export async function configure(aurelia: Aurelia): Promise<void> {
      *
      */
     // .plugin('aurelia-mobile-plugin')
+    // .plugin('restaurelia')
 
     /**
      * This enables the animation plugin for aurelia

@@ -1,7 +1,7 @@
 import { LogManager, inject } from 'aurelia-framework'; //lazy
 import { Logger } from 'aurelia-logging';
 // import { HttpClient } from 'aurelia-fetch-client';
-import { UsersService } from '../../services/users.ts';
+import { UsersService } from '../../services/users.service.ts';
 
 // polyfill fetch client conditionally
 // const fetch = !self.fetch ? System.import('isomorphic-fetch') : Promise.resolve(self.fetch);
@@ -29,9 +29,11 @@ export class Users {
     // let url = this.usersService.getBaseUrl();
     // this.log.debug('base-url', url);
 
-    const response = await this.usersService.getAll();
-    this.log.info('response', response);
+    this.users  = await this.usersService.getAll();
+    this.log.info('response', this.users);
+    // this.users = response;
     // this.users = await response.json();
+    // this.log.info('users', this.users);
 
     // // ensure fetch is polyfilled before we create the http client
     // await fetch;

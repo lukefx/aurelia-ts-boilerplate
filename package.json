@@ -70,7 +70,6 @@
     }
   },
   "dependencies": {
-    "restaurelia": "^0.0.0",
     "animate.css": "^3.5.2",
     "aurelia-animator-css": "^1.0.1",
     "aurelia-bootstrapper-webpack": "^1.0.0",
@@ -94,6 +93,7 @@
     "intl": "^1.2.4",
     "isomorphic-fetch": "^2.2.1",
     "jquery": "2.2.4",
+    "json-typescript-mapper": "^1.0.4",
     "lodash": "^4.15.0",
     "material-design-icons": "3.0.1",
     "materialize-css": "^0.97.7",
